@@ -1,10 +1,215 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Socks</title>
+<title>CheburSocks</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta id='meta' name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" />
+	<link rel="icon" type="image/x-icon" href="che.png">
+<style>
+.switch {
+  position: absolute;
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  right:8px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "II";
+  font-size:.6em;
+  text-align:center;
+  height: 12px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 2px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.hdr{position:sticky; position: -webkit-sticky;top:0;background-color:white;border-bottom: solid 2px black;z-index:1;}
+.frames{overflow-x:hidden;border:solid 2px black; }
+@media screen and (orientation: landscape) {
+.frames{position:absolute; display: block; height:60%;max-height:60%; width:30%;max-width:30%;overflow-x:hidden;}
+select{width:100%;}
+input{width:100%;}
+.strin{display:flex;}
+}
+.on{color: #2196F3;/*font-weight:bold;*/}
+i:hover, button:hover{color:cornsilk;background-color:#2196F3;cursor:pointer;}
+.clo{color:rgba(255, 99, 71, 0.5);}
+.clo:hover{background-color:transparent;color:tomato;)}
+button{width:100%; font-weight:bold;}
+@media screen and (orientation: portrait) {
+	.frames{height:22vh; max-height:22vh; max-width:calc(100% - 32px);}
+	.switch{ right:24px;}
+	.switches{height: 34%;max-height:34%; }
+	select{width:calc(50% - 16px);max-width:calc(50% - 16px);margin-right:0px;}
+	input{width:calc(50% - 4px);max-width:calc(50% - 4px);}
+	.hdr{font-size:.7em}
+	.infbtn{font-size:1.8em}
+	.links{height:auto;max-height:100vh;}
+	.result{max-height:calc(100% - 40px);}
+	}
+</style>
 </head>
-<body>
-    <h1>Welcome to the Socks Page</h1>
-    <p>This page contains information about socks.</p>
+<body allow="clipboard-read; clipboard-write" onoffline='alert("Check the Internet connection!")' >
+
+<h2 id='mode' class='hdr'>SocksWorldwide</h2>
+<div class='strin'>
+	<label for="country"></label>
+<select name="country" id="csni">
+ <option value="" selected>SNI: Other...</option>
+	<optgroup label='RF'>
+ <option value="vk.com">SNI: VK</option>
+  <option value="ok.ru">SNI: OK</option>
+</optgroup>
+<optgroup label="North America etc.">
+  <option value="telegram.org">SNI: TG</option>
+ <option value="viber.com">SNI: Viber</option>
+  <option value="youtube.com">SNI: YouTube</option>
+</optgroup>
+</select>
+	<input placeholder='Enter SNI value here' id='sni' value=''><input placeholder='Enter Country code(s;) here' id='sta' value='gb;de;se;fr;nl;' type='search'><input id='typ' placeholder='Select Protocol(s) below'><input id='sec' placeholder='Enter Security type here' value='tls;' type='search'><input id='por' placeholder='Enter port(s;) value here' value='443;' type='search'>
+  <button id='aut' > GET'EM NOW </button></div>
+
+<fieldset id='codes' class='frames codes'>
+	<legend><b>Country Codes</b></legend>
+	<div id='cc' style='width:100%'></div>
+</fieldset>
+
+ <fieldset id='fr1' class='frames switches'>
+  <legend><b>VPN Protocols</b></legend>
+  	<div id='pss' style='display:flex'>ShadowSocks*<label class="switch"> 
+  <input type="checkbox" id='ss'>
+  <span class="slider "></div>
+</label></span>
+<p style='display:flex'>Trojan<label class="switch"> 
+  <input type="checkbox" id='tr'>
+  <span class="slider "></span>
+</label></p>
+<p style='display:flex'>VMESS<label class="switch"> 
+  <input type="checkbox" id='vm'>
+  <span class="slider "></span>
+</label></p>
+<p style='display:flex'>VLESS<label class="switch"> 
+  <input type="checkbox" id='vl'>
+  <span class="slider "></span>
+</label></p>
+<p style='display:flex'>Hysteria<label class="switch"> 
+  <input type="checkbox" id='hy'>
+  <span class="slider "></span>
+</label></p>
+<p style='display:flex'>Hysteria2<label class="switch"> 
+  <input type="checkbox" id='hy2'>
+  <span class="slider "></span>
+</label></p>
+ <p style='display:flex'>TUIC<label class="switch"> 
+  <input type="checkbox" id='tu'>
+  <span class="slider "></p>
+</label></span>
+<span><b>*IMPORTANT NOTE</b><br>Pls., don't forget to remove values<br>for SNI, Security & Port</span>
+ </fieldset>
+ <fieldset class='frames links' id='fr'>
+  <legend><b>Popular Online Tools/Testing Sites</b></legend>
+ <a href='https://browserleaks.com/ip'>Browser Leaks</a>
+ <p><a href=' https://vpntester.org/en/vpn-test-comparison/'>VPN Tester</a></p>
+  <p><a href='https://whoer.net/'>Whoer</a></p>
+  <p><a href='https://2ip.io/privacy/'>2ip.io</a></p>
+  <p><a href='https://www.dnsleaktest.com/'>DNS Leak Test</a></p>
+  <p> <a href='https://www.speedtest.net/'>Speed Test by OOKLA</a></p>
+  <p> <a href='https://speed.cloudflare.com/'>Speed Test by CloudFlare</a></p>
+  <p> <a href='https://www.cloudflare.com/cdn-cgi/trace'>WARP info</a></p>
+   <a href='https://www.security.org/vpn/test/'>Security.org VPN test page</a>
+ </fieldset>
+
+<dialog id='dlg' style='width:90%; height:90%'><div style='display:block; height:100%'><span style='position:relative; display:flex;width:100%'><span>Subscription </span><input id='lnk' style='width:100%;'>&nbsp<button style='width:auto;z-index:1;'onclick='lnk.select(); navigator.clipboard.writeText(lnk.value);dlg.close()';>copy&nbsp;&&nbsp;close</button></span><iframe id='ifr' style='width:100%; height:calc(100% - 60px)' class='result'></iframe><div style='margin-top:2px;text-align:right; display:flex;'><button onclick='location.reload()'> to default values </button>&nbsp;<button onclick='dlg.close()'> continue parsing </button></div></div></dialog>
+<dialog id='info' style='background-color:cornsilk;color:black; '><h2 style='text-align:right; background-color:black;color:cornsilk; position:fixed; width:calc(100% - 6px); margin:-16px;border-bottom:solid 1px black;'>Some useful Info&nbsp;&nbsp;&nbsp;<i class='fa fa-close clo' onclick='info.close()' style='padding-right:16px;'></i></h2><br><p><b>
+By the default, a socks parsing config looks like follows:</b></p><p>
+The SNI (Server Name Indication) value is set to 'Others...' . The appropriate field of the request is empty. You can easily change this field choosing pre-installed values from the drop-down list or fill it in with your exclusive value. Leaving this field empty shall allow you to try to use a sock's Owner SNI if it is exists in the original configuration.</p><p>
+The Country's filter is turned to the most popular traffic exchange points & hosting data centers in Europe located in the Great Britain, Germany, Sweden, France and the Holland. You can edit this field manually, adding/removing a Country Codes. The Codes MUST follow one by one divided by semicolons. Leaving this field emty you'll get a socks from ALL the Countries currently stored in a database.</p><p>
+The VPN Protocols are not selected, thus it means NO FILTERS are applied (this is equlal to all checkboxes are checked i.e. all the Protocols are selected).</p><p>
+The Security Filter is set to the 'tls' value and the Port value is equal to 443. You can also change those values manually. Each value in those fields must follow by semicolon, as well. You can delete these  values and send an unconfigured 'Security filter' request. In this case you can get a mixed 'cloud of socks' with a various Security config values, as well as socks without Security configs. Any case, you have to have in your mind that sock's Owner may follow your online activity and collect some of your Personal data. So the usage of a socks is fully your Private Desicion!  Never the less, to prevent a possible data leaks its recommended to use a so called 'sock chain' finished with WARP/WARP+ config.* </p><p>
+As fare as you created desired configuration (or leaved the default one), click/tap on the 'GET'EM NOW' button. Then select and copy to the clipboard everything you want from a pop-up window. If you got an empty window, return into the main page and try to create a new config, repeat your request and in a case of successful result come through the select-copy procedure. Then paste a copied data into a proper app,  for ex. into the <a href='https://github.com/MatsuriDayo'>NekoBox App</a> or its followers/clones.</p><p>To obtain the latest version of this application simply long click/tap on the Socks app icon (CheburGoog) located on your desktop and DELETE ALL APP DATA in the 'App. info' item of your Android device. Keep cleaning this app data from time to time to always stay updated.
+</p><p>Refer to our <a href="https://clikny.ru/noski">Telegram Group</a> for the further comperhansive info regarding modern VPN Technologies, its Protocols, Security, right and safety usage, etc.</p><p>In addition I would like to note that the usage of this app has become into reality after VPN Club's member Comrade "dimzone541" <a href='https://4pda.to/forum/index.php?showtopic=928862&view=findpost&p=128062190'>fabulous Great post</a> followed to his f.cking hurdwork.</p><p><b>
+Good Luck and Happy Surfing!</d></p><p style='font-size:0.8em'><i>*As for my own experience, such kind of approach makes me feel to myself more calmer and secure surfing the Net. Perhaps,  it's just a self-lying...</i></dialog>
+
+<script>
+	var p=document.getElementsByTagName("p");
+	sni.value=csni.value;
+csni.onchange=function(){sni.value=csni.value}
+aut.onclick=function(){ 
+	lnk.value=ifr.src='https://istanbulsydneyhotel.com/blogs/site/sni.php?country='+sta.value+'&sni='+sni.value+'&kind='+typ.value+'&security='+sec.value+'&port='+por.value; 
+}
+ifr.onload=function(){dlg.showModal();}
+ss.onchange=function(){if(ss.checked){typ.value+='ss;';pss.className='on';}else{pss.className='';typ.value=typ.value.replace('ss;','');}}
+tr.onchange=function(){if(tr.checked){typ.value+='trojan;';p[0].className='on';}else{p[0].className='';typ.value=typ.value.replace('trojan;','');}}
+vm.onchange=function(){if(vm.checked){typ.value+='vmess;';p[1].className='on';}else{p[1].className='';typ.value=typ.value.replace('vmess;','');}}
+vl.onchange=function(){if(vl.checked){typ.value+='vless;';p[2].className='on';}else{typ.value=typ.value.replace('vless;','');p[2].className='';}}
+hy.onchange=function(){if(hy.checked){typ.value+='hysteria;';p[3].className='on';}else{typ.value=typ.value.replace('hysteria;','');p[3].className='';}}
+hy2.onchange=function(){if(hy2.checked){typ.value+='hysteria2;';p[4].className='on';}else{typ.value=typ.value.replace('hysteria2;','');p[4].className='';}}
+tu.onchange=function(){if(tu.checked){typ.value+='tuic;';p[5].className='on';}else{typ.value=typ.value.replace('tuic;','');p[5].className='';}}
+typ.onkeyup=function(){typ.value ='';}
+
+fetch('https://gist.githubusercontent.com/ssskip/5a94bfcd2835bf1dea52/raw/3b2e5355eb49336f0c6bc0060c05d927c2d1e004/ISO3166-1.alpha2.json', {method: 'GET'})
+	.then(response => response.text())
+	.then(data => {cc.innerText=data; redraw();})
+		
+screen.orientation.onchange = function (){setTimeout('redraw()',200)}
+function redraw(){
+			if(innerWidth>innerHeight){ 
+				fr1.style.left=codes.offsetWidth+16+'px';fr.style.left=codes.offsetWidth+fr1.offsetWidth+24+'px';
+				}//else{codes.style.maxHeight='15vh';codes.style.height='15vh';}
+		}
+	fetch('http://ipwho.is', {method: 'GET'})
+	.then(response => response.text())
+	.then(data => {
+	var geo = JSON.parse(data.toString());
+ var cflag= JSON.parse(JSON.stringify(geo.flag));
+mode.innerHTML='<h3 >Whois IP: '+geo.ip+'<br>'+JSON.parse(JSON.stringify(geo.connection)).isp+'<br>'+cflag.emoji+' '+geo.city+', '+geo.country+'<i onclick="info.showModal();info.scrollTo(0,0)" class="fa fa-info-circle infbtn" style="position:fixed; right:24px;top:16px;"></i></h3>';
+})
+	
+</script>
 </body>
-</html>
+</html> 
